@@ -221,27 +221,27 @@ Table Name:  City
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name: Dwelling
+Table Name: Pets
 
-| Person ID  |  City      | Fenced Yard|            |            |            |            |            |            |
+| Pet ID     | Name       | Type       | Person ID  |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-| 1          | Yes        | No         |            |            |            |            |            |            |
-| 2          | No         | No         |            |            |            |            |            |            |
-| 3          | No         | Yes        |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+| 1          | Ellie      | Dog        | 1          |            |            |            |            |            |
+| 2          | Joe        | Horse      | 2          |            |            |            |            |            |
+| 3          | Ginger     | Dog        | 3          |            |            |            |            |            |
+| 4          | Tiger      | Cat        | 1          |            |            |            |            |            |
+| 5          | Miss Kitty | Cat        | 3          |            |            |            |            |            |
+| 6          | Toby       | Turtle     | 1          |            |            |            |            |            |
+| 7          | Bubble     | Bubble     | 3          |            |            |            |            |            |
 
-Table Name: Pet Types
+Table Name: Dwelling Info
 
-| Pet ID     |  Pet Type  |            |            |            |            |            |            |            |
+| Person ID  | Fenced Yard|City Dweller|            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|  1         |  Dog       |            |            |            |            |            |            |            |
-|  2         |  Horse     |            |            |            |            |            |            |            |
-|  3         |  Cat       |            |            |            |            |            |            |            |
-|  4         |  Turtle    |            |            |            |            |            |            |            |
-|  5         |  Fish      |            |            |            |            |            |            |            |
+|  1         | No         | Yes        |            |            |            |            |            |            |
+|  2         | No         | No         |            |            |            |            |            |            |
+|  3         | Yes        | No         |            |            |            |            |            |            |
+|            |            |            |            |            |            |            |            |            |
+|            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
@@ -249,9 +249,9 @@ Table Name: Pet Family
 
 | Person ID  | Pet Type 1 | Pet Type 2 | Pet Type 3 | Pet Name 1 | Pet Name 2 | Pet Name 3 |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-| 1          | 1          | 3          | 4          | Elllie     | Tiger      | Toby       |            |            |
-| 2          | 2          |            |            | Joe        |            |            |            |            |
-| 3          | 1          | 3          | 5          | Ginger     | Miss Kitty | Bubble     |            |            |
+|            |            |            |            |            |            |            |            |            |
+|            |            |            |            |            |            |            |            |            |
+|            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
