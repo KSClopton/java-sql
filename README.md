@@ -37,6 +37,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+Select contact_name, city
+FROM customers
+WHERE City='London'
 
 ```
 
@@ -48,7 +51,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT contact_name, postal_code
+FROM customers
+WHERE postal_code='1010'
 ```
 
 * [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
@@ -59,7 +64,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT phone
+FROM suppliers
+WHERE supplier_id='11'
 ```
 
 * [ ] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
@@ -70,7 +77,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT * 
+FROM orders
+ORDER BY order_date DESC
 ```
 
 * [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
@@ -82,7 +91,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT * 
+FROM suppliers
+WHERE length(company_name)>20
 ```
 
 * [ ] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
@@ -95,7 +106,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT *
+FROM customers
+WHERE UPPER(contact_title) LIKE '%MARKET%'
 ```
 
 * [ ] ***add a customer record for***
@@ -112,6 +125,8 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+INSERT INTO customers (customer_id, company_name, contact_name, address, city, postal_code, country)
+VALUES ('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 
 ```
 
@@ -123,6 +138,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+UPDATE customers
+SET postal_code = '11122'
+WHERE contact_name='Bilbo Baggins'
 
 ```
 
@@ -135,6 +153,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT customers.company_name, count(*) as QTY
+FROM orders JOIN customers
+ON orders.customer_id = customers.customer_id
+GROUP BY customers.company_name
+
 
 ```
 
@@ -146,6 +169,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+SELECT customers.contact_name, count(*) as QTY
+FROM orders JOIN customers
+ON orders.customer_id = customers.customer_id
+GROUP BY customers.contact_name
+ORDER BY qty DESC
 
 ```
 
@@ -157,7 +185,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
-
+SELECT customers.city, count(*) as QTY
+FROM orders JOIN customers
+ON orders.customer_id = customers.customer_id
+GROUP BY customers.city
+ORDER BY qty DESC
 ```
 
 ## Data Normalization
@@ -177,49 +209,49 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name:  City
 
-|            |            |            |            |            |            |            |            |            |
+| Person ID  | Name       |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+| 1          | Jane       |            |            |            |            |            |            |            |
+| 2          | Bob        |            |            |            |            |            |            |            |
+| 3          | Sam        |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Dwelling
 
-|            |            |            |            |            |            |            |            |            |
+| Person ID  |  City      | Fenced Yard|            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+| 1          | Yes        | No         |            |            |            |            |            |            |
+| 2          | No         | No         |            |            |            |            |            |            |
+| 3          | No         | Yes        |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet Types
 
-|            |            |            |            |            |            |            |            |            |
+| Pet ID     |  Pet Type  |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|  1         |  Dog       |            |            |            |            |            |            |            |
+|  2         |  Horse     |            |            |            |            |            |            |            |
+|  3         |  Cat       |            |            |            |            |            |            |            |
+|  4         |  Turtle    |            |            |            |            |            |            |            |
+|  5         |  Fish      |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet Family
 
-|            |            |            |            |            |            |            |            |            |
+| Person ID  | Pet Type 1 | Pet Type 2 | Pet Type 3 | Pet Name 1 | Pet Name 2 | Pet Name 3 |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+| 1          | 1          | 3          | 4          | Elllie     | Tiger      | Toby       |            |            |
+| 2          | 2          |            |            | Joe        |            |            |            |            |
+| 3          | 1          | 3          | 5          | Ginger     | Miss Kitty | Bubble     |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
@@ -232,7 +264,10 @@ Table Name:
 * [ ] ***delete all customers that have no orders. Should delete 2 (or 3 if you haven't deleted the record added) records***
 
 ```SQL
-
+DELETE 
+FROM customers
+WHERE customer_id NOT IN (SELECT DISTINCT customer_id 
+						 FROM orders)
 ```
 
 * [ ] ***Create Database and Table: After creating the database, tables, columns, and constraint, generate the script necessary to recreate the database. This script is what you will submit for review***
